@@ -160,20 +160,6 @@
 
   .hero-content { position: relative; z-index: 2; }
 
-  .hero-kicker {
-    font-family: var(--mono); font-size: 0.9rem; color: var(--accent);
-    letter-spacing: 0.05em; margin-bottom: 1.25rem; display: flex; align-items: center; gap: 0.6rem;
-  }
-  .hero-kicker .pulse {
-    width: 8px; height: 8px; border-radius: 50%; background: var(--accent);
-    box-shadow: 0 0 0 0 rgba(34,211,238,0.5); animation: pulse 2s infinite;
-  }
-  @keyframes pulse {
-    0% { box-shadow: 0 0 0 0 rgba(34,211,238,0.45); }
-    70% { box-shadow: 0 0 0 8px rgba(34,211,238,0); }
-    100% { box-shadow: 0 0 0 0 rgba(34,211,238,0); }
-  }
-
   .hero h1 {
     font-size: clamp(2.6rem, 6.5vw, 4.6rem);
     font-weight: 800; letter-spacing: -0.02em; line-height: 1.05;
@@ -224,6 +210,23 @@
   .about-story p { color: var(--text-dim); margin-bottom: 1.3rem; font-size: 1.02rem; }
   .about-story .highlight { color: var(--text); font-weight: 600; }
   .about-story .highlight.tag-space { color: var(--accent-2); }
+
+  /* ---------- Experience ---------- */
+  .experience { background: var(--bg-alt); border-bottom: 1px solid var(--border); }
+  .experience-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.4rem; }
+  .experience-card {
+    background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg);
+    padding: 1.9rem; transition: border-color 0.25s ease, transform 0.25s ease;
+  }
+  .experience-card:hover { border-color: var(--border-strong); transform: translateY(-3px); }
+  .company-header { margin-bottom: 1.3rem; }
+  .company-name { font-size: 1.2rem; font-weight: 700; }
+  .company-group { font-family: var(--mono); font-size: 0.78rem; color: var(--text-faint); margin-top: 0.15rem; }
+  .role-list { display: flex; flex-direction: column; gap: 1rem; margin-bottom: 1.3rem; }
+  .role-item { border-left: 2px solid var(--accent); padding-left: 1rem; }
+  .role-title { font-weight: 600; font-size: 0.96rem; }
+  .role-dates { font-family: var(--mono); font-size: 0.76rem; color: var(--accent-2); margin-top: 0.15rem; }
+  .experience-desc { color: var(--text-dim); font-size: 0.92rem; }
 
   /* ---------- Skills (bento) ---------- */
   .skills-grid {
@@ -319,6 +322,7 @@
     .mobile-menu-btn { display: block; }
     .skills-grid { grid-template-columns: 1fr; }
     .skill-category, .skill-category.wide, .skill-category.narrow { grid-column: span 1; }
+    .experience-grid { grid-template-columns: 1fr; }
     section { padding: 4.5rem 0; }
     .hero-stats { gap: 1.8rem; }
   }
@@ -329,12 +333,13 @@
 
 <header>
   <nav class="container">
-    <a href="#" class="logo">Praveen<span class="dot">.</span>Raj</a>
+    <a href="#" class="logo">Praveen Raj</a>
     <ul class="nav-links">
       <li><a href="#about"><span class="idx">01</span> About</a></li>
-      <li><a href="#skills"><span class="idx">02</span> Skills</a></li>
-      <li><a href="#projects"><span class="idx">03</span> Projects</a></li>
-      <li><a href="#contact"><span class="idx">04</span> Contact</a></li>
+      <li><a href="#experience"><span class="idx">02</span> Experience</a></li>
+      <li><a href="#skills"><span class="idx">03</span> Skills</a></li>
+      <li><a href="#projects"><span class="idx">04</span> Projects</a></li>
+      <li><a href="#contact"><span class="idx">05</span> Contact</a></li>
     </ul>
     <button class="theme-toggle" onclick="toggleTheme()" title="Toggle theme" aria-label="Toggle theme">
       <i class="fas fa-moon"></i>
@@ -345,6 +350,7 @@
   </nav>
   <div class="mobile-nav" id="mobileNav">
     <a href="#about" onclick="toggleMobileMenu()">About</a>
+    <a href="#experience" onclick="toggleMobileMenu()">Experience</a>
     <a href="#skills" onclick="toggleMobileMenu()">Skills</a>
     <a href="#projects" onclick="toggleMobileMenu()">Projects</a>
     <a href="#contact" onclick="toggleMobileMenu()">Contact</a>
@@ -355,12 +361,11 @@
   <section class="hero">
     <canvas id="starfield"></canvas>
     <div class="container hero-content">
-      <p class="hero-kicker"><span class="pulse"></span>Available for QA &amp; test automation roles</p>
       <h1>Praveen Raj<br><span class="accent-word">Software Test Engineer</span></h1>
       <p class="subtitle">Building reliable software through comprehensive testing &amp; automation.</p>
 
       <div class="hero-stats">
-        <div class="stat-item"><span class="stat-number">4+</span><span class="stat-label">Years Experience</span></div>
+        <div class="stat-item"><span class="stat-number">5+</span><span class="stat-label">Years Experience</span></div>
         <div class="stat-item"><span class="stat-number">1000+</span><span class="stat-label">Test Cases Automated</span></div>
         <div class="stat-item"><span class="stat-number">15+</span><span class="stat-label">Technologies</span></div>
       </div>
@@ -378,59 +383,124 @@
       <p class="eyebrow"><span class="num">01</span> About</p>
       <h2 class="section-heading">My story</h2>
       <div class="about-story reveal">
-        <p>I'm a <span class="highlight">Software Test Engineer</span> with <span class="highlight">4+ years of experience</span> in software testing and automation. I specialize in building reliable test frameworks and ensuring software quality across web and mobile applications.</p>
+        <p>I'm a <span class="highlight">Software Test Engineer</span> with <span class="highlight">5+ years of experience</span> in software testing and automation. I specialize in building reliable test frameworks and ensuring software quality across web and mobile applications.</p>
         <p>In <span class="highlight">Test Automation</span>, I work with Selenium WebDriver for UI testing, develop comprehensive test suites using Java and Python, and implement TestNG &amp; BDD frameworks with Cucumber. I've built and maintained automation frameworks that significantly reduce testing time while improving coverage.</p>
         <p>For <span class="highlight">CI/CD</span>, I manage Jenkins pipelines, configure Azure DevOps for continuous integration, and integrate automated tests into deployment workflows. I ensure smooth releases through automated testing gates and build processes.</p>
         <p>In <span class="highlight">Non-Functional Testing</span>, I handle performance testing with JMeter &amp; Blazemeter, conduct API testing using Postman, and perform security validation with Charles Proxy. I also focus on load testing and analyzing application behavior under various conditions.</p>
         <p>Outside my professional work, I'm deeply passionate about <span class="highlight tag-space">astrophysics</span>. I teach astrophysics concepts to school kids in my free time, breaking down complex topics like black holes, stellar evolution, and cosmology into engaging lessons. This teaching experience has sharpened my ability to explain technical concepts clearly.</p>
-        <p>I'm currently exploring opportunities in <span class="highlight tag-space">aerospace and space-related industries</span>, where I can merge my technical expertise with my passion for space technology.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="experience" class="experience">
+    <div class="container">
+      <p class="eyebrow"><span class="num">02</span> Experience</p>
+      <h2 class="section-heading">Where I've worked</h2>
+      <div class="experience-grid">
+
+        <div class="experience-card reveal">
+          <div class="company-header">
+            <div class="company-name">HID Global</div>
+            <div class="company-group">ASSA ABLOY Group</div>
+          </div>
+          <div class="role-list">
+            <div class="role-item">
+              <div class="role-title">Senior Software Test Engineer</div>
+              <div class="role-dates">Aug 2026 — Present</div>
+            </div>
+            <div class="role-item">
+              <div class="role-title">Software Test Engineer</div>
+              <div class="role-dates">Aug 2024 — Aug 2026</div>
+            </div>
+          </div>
+          <p class="experience-desc">Leading a 5-member QA team, driving test automation, API testing, and performance testing, and owning CI/CD pipeline management — alongside functional and release-wise testing across every sprint.</p>
+        </div>
+
+        <div class="experience-card reveal">
+          <div class="company-header">
+            <div class="company-name">L&amp;T Mindtree</div>
+            <div class="company-group">LTM</div>
+          </div>
+          <div class="role-list">
+            <div class="role-item">
+              <div class="role-title">Software Test Engineer</div>
+              <div class="role-dates">Oct 2021 — Aug 2024</div>
+            </div>
+          </div>
+          <p class="experience-desc">Built and maintained Selenium-based automation frameworks in Java, and extended automation to smart-TV platforms — Xbox and Samsung TV — using the Witbe device-testing environment, alongside core functional testing.</p>
+        </div>
+
       </div>
     </div>
   </section>
 
   <section id="skills" class="skills">
     <div class="container">
-      <p class="eyebrow"><span class="num">02</span> Skills</p>
+      <p class="eyebrow"><span class="num">03</span> Skills</p>
       <h2 class="section-heading">Technical skills</h2>
       <div class="skills-grid">
         <div class="skill-category wide reveal">
-          <div class="category-header"><div class="category-icon"><i class="fas fa-robot"></i></div><h3>Test Automation Tools</h3></div>
+          <div class="category-header"><div class="category-icon"><i class="fas fa-robot"></i></div><h3>Automation</h3></div>
           <div class="skill-list">
-            <span class="skill-tag">Selenium WebDriver</span>
+            <span class="skill-tag">Java</span>
+            <span class="skill-tag">Selenium</span>
+            <span class="skill-tag">Testing</span>
+            <span class="skill-tag">POM</span>
+            <span class="skill-tag">Maven</span>
+            <span class="skill-tag">Playwright</span>
+            <span class="skill-tag">TypeScript</span>
             <span class="skill-tag">Cucumber (BDD)</span>
-            <span class="skill-tag">Postman (API Testing)</span>
-            <span class="skill-tag">Charles Proxy</span>
-            <span class="skill-tag">Functional Testing</span>
-            <span class="skill-tag">Automation Testing</span>
-            <span class="skill-tag">TDD</span>
-            <span class="skill-tag">BDD</span>
           </div>
         </div>
 
         <div class="skill-category narrow reveal">
-          <div class="category-header"><div class="category-icon"><i class="fas fa-code"></i></div><h3>Programming</h3></div>
+          <div class="category-header"><div class="category-icon"><i class="fas fa-plug"></i></div><h3>API Testing</h3></div>
           <div class="skill-list">
-            <span class="skill-tag">Java</span>
-            <span class="skill-tag">Python</span>
-            <span class="skill-tag">JavaScript</span>
-            <span class="skill-tag">SQL</span>
-            <span class="skill-tag">PHP</span>
+            <span class="skill-tag">Postman</span>
+            <span class="skill-tag">RestAssured</span>
+          </div>
+        </div>
+
+        <div class="skill-category narrow reveal">
+          <div class="category-header"><div class="category-icon"><i class="fas fa-tachometer-alt"></i></div><h3>Performance Testing</h3></div>
+          <div class="skill-list">
+            <span class="skill-tag">JMeter</span>
+            <span class="skill-tag">BlazeMeter</span>
+            <span class="skill-tag">Charles Proxy</span>
           </div>
         </div>
 
         <div class="skill-category narrow reveal">
           <div class="category-header"><div class="category-icon"><i class="fas fa-cogs"></i></div><h3>CI/CD &amp; DevOps</h3></div>
           <div class="skill-list">
-            <span class="skill-tag">Jenkins</span>
             <span class="skill-tag">Azure DevOps</span>
+            <span class="skill-tag">Jenkins</span>
+          </div>
+        </div>
+
+        <div class="skill-category narrow reveal">
+          <div class="category-header"><div class="category-icon"><i class="fas fa-tasks"></i></div><h3>Tools &amp; Tracking</h3></div>
+          <div class="skill-list">
             <span class="skill-tag">Git</span>
             <span class="skill-tag">GitHub</span>
-            <span class="skill-tag">Synergy</span>
             <span class="skill-tag">Jira</span>
+            <span class="skill-tag">Synergy</span>
           </div>
         </div>
 
         <div class="skill-category wide reveal">
+          <div class="category-header"><div class="category-icon"><i class="fas fa-database"></i></div><h3>Programming &amp; Data</h3></div>
+          <div class="skill-list">
+            <span class="skill-tag">Python</span>
+            <span class="skill-tag">JavaScript</span>
+            <span class="skill-tag">SQL</span>
+            <span class="skill-tag">PHP</span>
+            <span class="skill-tag">MySQL</span>
+            <span class="skill-tag">Mode</span>
+          </div>
+        </div>
+
+        <div class="skill-category narrow reveal">
           <div class="category-header"><div class="category-icon"><i class="fas fa-laptop-code"></i></div><h3>Frontend &amp; Backend</h3></div>
           <div class="skill-list">
             <span class="skill-tag">HTML</span>
@@ -439,21 +509,13 @@
             <span class="skill-tag">Node.js</span>
           </div>
         </div>
-
-        <div class="skill-category narrow reveal">
-          <div class="category-header"><div class="category-icon"><i class="fas fa-database"></i></div><h3>Databases &amp; Analytics</h3></div>
-          <div class="skill-list">
-            <span class="skill-tag">MySQL</span>
-            <span class="skill-tag">Mode</span>
-          </div>
-        </div>
       </div>
     </div>
   </section>
 
   <section id="projects" class="projects">
     <div class="container">
-      <p class="eyebrow"><span class="num">03</span> Projects</p>
+      <p class="eyebrow"><span class="num">04</span> Projects</p>
       <h2 class="section-heading">Featured projects</h2>
       <div class="projects-grid">
 
@@ -508,9 +570,9 @@
 
   <section id="contact" class="contact">
     <div class="container">
-      <p class="eyebrow"><span class="num">04</span> Contact</p>
+      <p class="eyebrow"><span class="num">05</span> Contact</p>
       <h2 class="section-heading">Get in touch</h2>
-      <p class="contact-description">I'm always open to discussing new opportunities, especially in QA automation, space technology, or aerospace industries. Let's connect!</p>
+      <p class="contact-description">I'm always open to discussing new opportunities. Let's connect!</p>
       <div class="contact-methods">
         <a href="mailto:praveenraj762000@gmail.com" class="contact-method"><div class="contact-icon"><i class="fas fa-envelope"></i></div><span>Email Me</span></a>
         <a href="https://www.linkedin.com/in/praveenraj76/" class="contact-method" target="_blank"><div class="contact-icon"><i class="fab fa-linkedin-in"></i></div><span>LinkedIn</span></a>
